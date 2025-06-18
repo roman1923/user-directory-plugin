@@ -1,0 +1,12 @@
+# Node & Composer
+/node_modules/
+/vendor/
+composer.lock
+
+# Data
+wp-content/cache
+wp-content/logs
+wp-content/uploads
+
+# OS & IDEs
+.vscode

@@ -1,0 +1,6 @@
+{
+  "redefinable-internals": [
+    "extension_loaded",
+    "exit"
+  ]
+}

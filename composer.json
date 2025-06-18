@@ -1,0 +1,51 @@
+{
+  "name": "roman/syde-wp-project",
+  "description": "A modern WordPress project",
+  "type": "project",
+  "require": {
+    "inpsyde/wp-stash": "^3.4",
+    "phpunit/phpunit": "^10.5",
+    "brain/monkey": "^2.6",
+    "monolog/monolog": "^2.9"
+  },
+  "require-dev": {
+    "syde/phpcs": "^1.0"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-install-cmd": [
+      "bash bin/install-latest-wordpress.sh"
+    ],
+    "post-update-cmd": [
+      "bash bin/install-latest-wordpress.sh"
+    ],
+    "test": "vendor/bin/phpunit --bootstrap wp-content/plugins/user-directory-plugin/tests/bootstrap.php --testdox wp-content/plugins/user-directory-plugin/tests",
+    "test-api": "vendor/bin/phpunit --bootstrap wp-content/plugins/user-directory-plugin/tests/bootstrap.php --testdox wp-content/plugins/user-directory-plugin/tests/Services/ApiServiceTest.php",
+    "test-renderer": "vendor/bin/phpunit --bootstrap wp-content/plugins/user-directory-plugin/tests/bootstrap.php --testdox wp-content/plugins/user-directory-plugin/tests/Services/HtmlRendererTest.php",
+    "test-settings": "vendor/bin/phpunit --bootstrap wp-content/plugins/user-directory-plugin/tests/bootstrap.php --testdox wp-content/plugins/user-directory-plugin/tests/Controllers/SettingsControllerTest.php",
+    "test-endpoint": "vendor/bin/phpunit --bootstrap wp-content/plugins/user-directory-plugin/tests/bootstrap.php --testdox wp-content/plugins/user-directory-plugin/tests/Controllers/DirectoryEndpointControllerTest.php",
+    "test-ajax": "vendor/bin/phpunit --bootstrap wp-content/plugins/user-directory-plugin/tests/bootstrap.php --testdox wp-content/plugins/user-directory-plugin/tests/Controllers/AjaxControllerTest.php",
+    "lint": "vendor/bin/phpcs --standard=ruleset.xml wp-content/plugins/user-directory-plugin/"
+  },
+  "extra": {
+    "installer-paths": {
+      "wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+      "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "wp-content/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "patchwork": {
+      "override-global-functions": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "UsersPlugin\\UserDirectory\\": "wp-content/plugins/user-directory-plugin/src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
